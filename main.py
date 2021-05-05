@@ -26,7 +26,9 @@ FILE_TO_SAVE = "school_db.json"
 
 kids = defaultdict(list)
 
-if curl is not None:
+if not curl and all((GetParentsUrl, headers, cookies)):
+    pass
+elif curl is not None:
     data = uncurl.parse_context(curl)
     if GetParentsUrl is None:
         HOST = '/'.join(data.url.split('/')[:3])
