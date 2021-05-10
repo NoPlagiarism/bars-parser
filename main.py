@@ -5,7 +5,9 @@ from datetime import datetime as dt
 from collections import defaultdict
 import json
 
-curl = ''
+with open("curl.txt", "r") as f:
+    curl = f.read().removesuffix("\n")
+print("Файл был открыт")
 
 HOST = ""
 if HOST != "":
@@ -37,6 +39,8 @@ elif curl is not None:
 elif not all((GetParentsUrl, headers, cookies)):
     print("Пожалуйста, введите данные в файле")
     exit(-1)
+
+print("Данные для входа успешно получены")
 
 
 def get_data(page_num):
@@ -90,13 +94,16 @@ async def main(main_loop):
     print(f"Parsing took {str(delta.total_seconds())} seconds:")
 
     if GROUP_STUDENTS_BY_CLASS:
+        print("Группировка по классам включена")
         kids_grouped = defaultdict(dict)
         for kid, kid_class in kids:
             kids_grouped[kid_class][kid] = kids[(kid, kid_class)]
         kids = kids_grouped
 
+    print("Сохраняю все данные в файл", FILE_TO_SAVE)
     with open(FILE_TO_SAVE, "w+", encoding="utf-8") as f:
         json.dump({str(k): v for k, v in kids.items()}, f, ensure_ascii=False, indent=4)
+    print("Все данные сохранены")
 
 
 loop = asyncio.get_event_loop()
