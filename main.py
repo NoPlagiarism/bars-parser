@@ -4,6 +4,7 @@ import uncurl
 from datetime import datetime as dt
 from collections import defaultdict
 import json
+from sys import exit
 
 with open("curl.txt", "r") as f:
     curl = f.read()
