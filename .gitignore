@@ -217,3 +217,5 @@ pip-selfcheck.json
 
 # standart db file name
 school_db.json
+# standart pyinstaller folder
+output
