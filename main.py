@@ -6,7 +6,7 @@ from collections import defaultdict
 import json
 
 with open("curl.txt", "r") as f:
-    curl = f.read().removesuffix("\n")
+    curl = f.read()
 print("Файл был открыт")
 
 HOST = ""
